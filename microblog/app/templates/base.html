@@ -1,10 +1,12 @@
 <html>
     <head>
-      {% if title %}
-      <title>{{ title }} - Microblog</title>
-      {% else %}
-      <title>Welcome to Microblog</title>
-      {% endif %}
+		{% if title %}
+		<title>{{ title }} - Microblog</title>
+		{% else %}
+		<title>Welcome to Microblog</title>
+		{% endif %}
+		{{ moment.include_jquery() }}
+		{{ moment.include_moment() }}
     </head>
     <body>
 		<div>
@@ -29,8 +31,6 @@
         {% endif %}
         {% endwith %}
         {% block content %}
-			{{ super() }}
-			{{ moment.include_moment() }}
 		{% endblock %}
     </body>
 </html>
