@@ -30,10 +30,17 @@ class LoginForm(FlaskForm):
     password = PasswordField('password')
     submit = SubmitField('login')
 
+#需要'is_active'属性
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(10), index=True, unique=True)
     password = db.Column(db.String(12))
+
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
 
 @app.route('/index')
 @app.route('/')
@@ -67,7 +74,6 @@ def login():
             return redirect(url_for('index'))
         return redirect(url_for(next_page))
     return render_template('login.html', form=form)
-
 
 
 if __name__ == '__main__':
