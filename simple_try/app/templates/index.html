@@ -1,8 +1,11 @@
 <head> 
 	<title>Database</title>
-	<h1>hello, Database!</h1> 
 </head>
 <body>
+	<div>
+		<a href='{{ url_for('logout') }}'>logout</a>
+	</div>
+	<h1>hello, Database!</h1> 
 	{% for u in users %}
 		<li>{{ u.username}} {{ u.password }}</li>
 	{% endfor %}

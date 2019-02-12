@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import EqualTo, DataRequired
-from flask_login import login_required, LoginManager, login_user,\
-                        UserMixin
+from flask_login import login_required, LoginManager, login_user, \
+                    UserMixin, logout_user
 import os
 
 app = Flask(__name__)
@@ -36,7 +36,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(10), index=True, unique=True)
     password = db.Column(db.String(12))
 
-
+#用户加载函数(回调函数)记录用户登陆的数据，回调请求上下文来获取数据
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
@@ -75,6 +75,10 @@ def login():
         return redirect(url_for(next_page))
     return render_template('login.html', form=form)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run()
