@@ -1,8 +1,8 @@
 from app import app, db
 from app.forms import LoginForm,RegistrationForm, EditProfileForm,PostForm,\
             ResetPasswordRequestForm, ResetPasswordForm
-from flask import render_template,request,flash,redirect,url_for
-from flask_login import current_user, login_user,logout_user,login_required
+from flask import render_template, request, flash, redirect, url_for
+from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from werkzeug.urls import url_parse
 from datetime import datetime
