@@ -12,7 +12,7 @@ def index():
 def weather(city):
     weather = data(city)
     if not weather:
-        return "", 500
+        return jsonify({}), 500
     state = weather.get('weather')
     city_ch = weather['city_ch']
     tem = weather.get('tem_min')+'~'+weather.get('tem_max') + '摄氏度'
