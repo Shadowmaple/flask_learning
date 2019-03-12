@@ -14,6 +14,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = \
         'sqlite:///' + os.path.join(basedir, 'app.db')
 #        'sqlite:///home/lawler/simple_try/app/a.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+#是否追踪对象的修改并且发送信号
+
 db = SQLAlchemy(app)
 login = LoginManager(app)
 login.login_view = 'login'
