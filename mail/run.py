@@ -12,6 +12,7 @@ app.config.update(dict(
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD'),
     MAIL_DEFAULT_SENDER = 'Shadow <1142319190@qq.com>'
 ))
+# 记得设置环境变量
 mail = Mail(app)
 
 
