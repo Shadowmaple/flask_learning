@@ -44,7 +44,7 @@ ___
  - `DataRequired()`验证器仅验证字段输入是否为空。
  - jinjia2模板继承：`{% extends 'base.html' %}`
  - `form.hidden_tag()`模板参数生成了一个隐藏字段，其中包含一个用于保护表单免受CSRF攻击的token
-  `{{ form.hidden_tag() }}`，如无，则不能有效提交表单（亲身试水）
+    `{{ form.hidden_tag() }}`，如无，则不能有效提交表单（亲身试水）
  - html5的*novalidate*属性规定当提交表单时不对其进行验证。
  - 基本定义为**class**类的目的是为了将其转为实例化对象，方便运用，即ORM
  - 使用SCRF必须要先设置密钥`secret_key`
@@ -60,7 +60,7 @@ ___
 ```
  - url_for()函数的一个有趣的地方是，你可以添加任何关键字参数，如果这些参数的名字没有直接在URL中匹配使用，那么Flask将它们设置为URL的查询字符串参数。
  - Flask-Moment依赖moment.js和jquery.js。使用bootstrap时则导入jquery.js
-```
+```html
 <html>
     <head>
 
@@ -75,7 +75,7 @@ ___
 >文档：http://www.cnblogs.com/agmcs/p/4446589.html
 
  - `os.system('cat errors.py')`：执行`cat errors.py`系统命令，如可行则返回0，否则为1
-    ```
+    ```python
     >>> import os
     >>> os.system('cat errors.py') == 0
     ……(代码省略)
@@ -108,14 +108,14 @@ ___
 ## 数据库
 ### 事先配置
 先配置，两项必配
-```
+```python
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 ```
 之后再创建实例
-```
+```python
 db = SQLAlchemy(app)
 ```
 
@@ -130,9 +130,10 @@ db = SQLAlchemy(app)
 |删除| db.session.delete(obj) |
 |回滚| db.session.rollback() |
 
-####实际操作
+#### 实际操作
 创建表
-```
+
+```python
 $ python3
 >>> …… #省略导入
 >>> db.create_all()
@@ -143,7 +144,7 @@ $ python3
 ```
 
 添加一个用户
-```
+```python
 >>> from app import db
 >>> from app.model import User
 >>> u = User(username='john', email='john@example.com')
@@ -151,7 +152,7 @@ $ python3
 >>> db.session.commit()
 ```
 修改
-```
+```python
 # 第一种方法
 >>> User.query().filter_by(username='abc').update({'name': '123'})
 >>> session.commit()
@@ -162,12 +163,12 @@ $ python3
 >>> session.commit()
 ```
 删除
-```
+```python
 >>> db.session.delete(u)
 >>> db.session.commit()
 ```
 示例
-```
+```python
 >>> User.query.all() # User类没有创建`__repr__`方法，所以默认显示的是id（1，2……）
 <User 1><User 2>
 >>> User.query.get(1)
@@ -189,7 +190,7 @@ $ python3
 #### 准备条件
 迁移插件：`flask-migrate`
 创建实例：
-```
+```python
 from flask_migrate import Migrate
 migrate = Migrate(app,db)
 ```
@@ -207,7 +208,7 @@ migrate = Migrate(app,db)
 
 ## 单元测试
 ### 代码实例
-```
+```python
 import unittest
 from app import app, db
 from app.models import User
