@@ -55,7 +55,7 @@ ___
  - `validate_on_submit` 将会检查是否是一个 POST 请求并且请求是否有效
  - Post/Redirect/Get模式
  - Flask-SQLAlchemy的所有查询对象都支持`paginate`方法
-```    
+```python
 >>> user.followed_posts().paginate(1, 20, False).items
 ```
  - url_for()函数的一个有趣的地方是，你可以添加任何关键字参数，如果这些参数的名字没有直接在URL中匹配使用，那么Flask将它们设置为URL的查询字符串参数。
